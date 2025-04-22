@@ -1,0 +1,56 @@
+[package]
+name = "proofforge-node"
+version = "0.1.0"
+edition = "2021"
+authors = ["ProofForge Team"]
+description = "A Substrate-based blockchain for credential verification"
+license = "Apache-2.0"
+
+[workspace]
+members = [
+    "node",
+    "pallets/certificates",
+]
+
+[dependencies]
+clap = { version = "4.0.9", features = ["derive"] }
+log = "0.4.17"
+codec = { package = "parity-scale-codec", version = "3.6.1", default-features = false, features = ["derive"] }
+serde = { version = "1.0.136", features = ["derive"] }
+jsonrpsee = { version = "0.16.2", features = ["server"] }
+
+# Substrate dependencies
+sc-cli = { version = "0.10.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.43" }
+sp-core = { version = "7.0.0", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.43" }
+sc-executor = { version = "0.10.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.43" }
+sc-service = { version = "0.10.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.43" }
+sc-telemetry = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.43" }
+sc-transaction-pool = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.43" }
+sp-api = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.43" }
+sp-block-builder = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.43" }
+sp-blockchain = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.43" }
+sp-consensus = { version = "0.10.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.43" }
+sp-runtime = { version = "7.0.0", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.43" }
+sp-timestamp = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.43" }
+frame-system = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.43" }
+pallet-transaction-payment = { version = "4.0.0-dev", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v0.9.43" }
+
+[features]
+default = ["std"]
+std = [
+    "codec/std",
+    "sc-cli/std",
+    "sp-core/std",
+    "sc-executor/std",
+    "sc-service/std",
+    "sc-telemetry/std",
+    "sc-transaction-pool/std",
+    "sp-api/std",
+    "sp-block-builder/std",
+    "sp-blockchain/std",
+    "sp-consensus/std",
+    "sp-runtime/std",
+    "sp-timestamp/std",
+    "frame-system/std",
+    "pallet-transaction-payment/std",
+] 

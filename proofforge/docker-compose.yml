@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  # Substrate blockchain node
+  chain:
+    build:
+      context: ./chain
+      dockerfile: Dockerfile
+    ports:
+      - "9944:9944"
+      - "9933:9933"
+      - "30333:30333"
+    command: --dev --ws-external --rpc-external --rpc-cors=all
+    volumes:
+      - chain-data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9933"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Frontend web app
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_NODE_URL=ws://chain:9944
+    depends_on:
+      - chain
+
+  # CLI credential issuer (used ad-hoc)
+  cli:
+    build:
+      context: ./issuer-cli
+      dockerfile: Dockerfile
+    volumes:
+      - ./keys:/keys
+    environment:
+      - NODE_URL=ws://chain:9944
+    depends_on:
+      - chain
+
+volumes:
+  chain-data: 

@@ -1,0 +1,30 @@
+[package]
+name = "proofforge-issuer-cli"
+version = "0.1.0"
+edition = "2021"
+authors = ["ProofForge Team"]
+description = "CLI tool for issuing and revoking ProofForge credentials"
+license = "Apache-2.0"
+
+[dependencies]
+clap = { version = "4.4.6", features = ["derive"] }
+dotenv = "0.15.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tokio = { version = "1.32.0", features = ["full"] }
+url = "2.4.1"
+chrono = "0.4.31"
+anyhow = "1.0.75"
+thiserror = "1.0.49"
+tracing = "0.1.37"
+tracing-subscriber = "0.3.17"
+
+# Substrate and Polkadot dependencies
+subxt = "0.31.0"
+substrate-api-client = "0.17.0"
+codec = { package = "parity-scale-codec", version = "3.2.2", features = ["derive"] }
+sp-core = "15.0.0"
+
+# QR code generation
+qrcode = "0.12.0"
+image = "0.24.7" 
